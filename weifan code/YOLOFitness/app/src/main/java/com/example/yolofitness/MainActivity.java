@@ -25,10 +25,19 @@ public class MainActivity extends AppCompatActivity {
         logInbotton = (Button) findViewById(R.id.logIn);
         signupbotton =(Button) findViewById(R.id.signup);
         forgetBotton = (Button) findViewById(R.id.forget);
+        signupbotton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignUpPage.class);
+                startActivity(intent);
+            }
+        });
+
         logInbotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AccountConfirmed(UserID.getText().toString(), Password.getText().toString());
+
             }
 
         });
@@ -37,18 +46,13 @@ public class MainActivity extends AppCompatActivity {
     }
     //  Testing admin.
     public void AccountConfirmed(String User, String UserPassword) {
-        if ((User == "admin") && (UserPassword == "admin123")) {
+        if ((User.equals("admin")) && (UserPassword.equals("admin123"))) {
             Intent intent = new Intent(MainActivity.this, Second_page.class);
             startActivity(intent);
         }
     }
+}
 
-    // sign Up page.
-    public void signupPage(){
-            Intent intent = new Intent(MainActivity.this, SignUpPage.class);
-            startActivity(intent);
-            }
-        }
 
 
 

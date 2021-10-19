@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignUpPage extends AppCompatActivity implements View.OnClickListener{
     public EditText AccountNum, signupPassword;
     public Button signupConfirm, studentbutton,instructorbutton;
-    public TextView tvidentity;
+
 
     @Override// Signup page on click and get input.
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,22 +24,33 @@ public class SignUpPage extends AppCompatActivity implements View.OnClickListene
         signupConfirm = (Button) findViewById(R.id.confirmbotton);
         studentbutton = (Button) findViewById(R.id.studentbt);
         instructorbutton = (Button) findViewById(R.id.instructorbt);
-        signupConfirm.setOnClickListener(this);
-        studentbutton.setOnClickListener(this);
-        instructorbutton.setOnClickListener(this);
-
-
-
-    }
-    //display message for difference type of register ( may be wrong need to check )
-    public void  Register(View v){
-            if (v.equals(studentbutton)){
-                tvidentity.equals("You are new registered as student");
-        }else if(v.equals(instructorbutton)){
-                tvidentity.equals("you are now registered as instructor");
+        signupConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpPage.this, MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(signupConfirm.getContext(),"registered complete",Toast.LENGTH_LONG).show();
+            }
+        });
+        studentbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(studentbutton.getContext(), "you are now registering as a student",Toast.LENGTH_SHORT).show();
 
             }
+        });
+        instructorbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(instructorbutton.getContext(), "you are now registering as an instructor" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
+
 
     //confirm sign up account and password.
     public void onClick(View v){
@@ -47,11 +59,7 @@ public class SignUpPage extends AppCompatActivity implements View.OnClickListene
                 break;
 
         }
+
     }
-    //back to main log in page
-    public void BackToMain()
-    {
-        Intent intent = new Intent(SignUpPage.this, MainActivity.class);
-        startActivity(intent);
-    }
+
 }
