@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.renderscript.*;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
     public EditText UserID, Password;
     public Button logInbotton,signupbotton, forgetBotton;
     RenderScript Rscript;
-
+    DatabaseHelper database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
         logInbotton = (Button) findViewById(R.id.logIn);
         signupbotton =(Button) findViewById(R.id.signup);
         forgetBotton = (Button) findViewById(R.id.forget);
+        database = new DatabaseHelper(this);
+
         signupbotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpPage.class);
+                Intent intent = new Intent(getApplicationContext(), SignUpPage.class);
                 startActivity(intent);
             }
         });
@@ -36,9 +39,19 @@ public class MainActivity extends AppCompatActivity {
         logInbotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountConfirmed(UserID.getText().toString(), Password.getText().toString());
+                String id =UserID.getText().toString();
+                String password = Password.getText().toString();
 
-            }
+                    boolean validate_account = database.Verify_password(id,password);
+                            if (validate_account ==true){
+
+                                Intent intent = new Intent(getApplicationContext(),Displaypage.class);
+
+
+                            }
+                }
+
+
 
         });
 

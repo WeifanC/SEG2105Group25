@@ -10,13 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YOLOFitness">
         <activity
-            android:name=".DeleteClasspage"
+            android:name=".Displaypage"
             android:exported="false" />
         <activity
             android:name=".SignUpPage"
-            android:exported="false" />
-        <activity
-            android:name=".Second_page"
             android:exported="false" />
         <activity
             android:name=".AddClassPage"

@@ -39,32 +39,20 @@
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signuppage_password"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.372" />
 
-    <Button
-        android:id="@+id/studentbt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="student"
-        app:layout_constraintBottom_toTopOf="@+id/signuppage_user"
-        app:layout_constraintEnd_toStartOf="@+id/instructorbt"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713" />
-
-    <Button
-        android:id="@+id/instructorbt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:text="instructor"
-        app:layout_constraintBottom_toTopOf="@+id/signuppage_user"
+    <EditText
+        android:id="@+id/identity"
+        android:layout_width="191dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="student or instructor?"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/confirmbotton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signuppage_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
