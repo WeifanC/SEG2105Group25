@@ -8,29 +8,30 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="206dp"
-        android:layout_height="145dp"
-        android:text="Welcome to YOLO fitness"
-        android:textSize="39sp"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="Welcome"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintVertical_bias="0.126" />
 
     <EditText
         android:id="@+id/User"
-        android:layout_width="206dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="userID"
+        android:hint="UserID"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <EditText
         android:id="@+id/password"
@@ -42,13 +43,14 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/User"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.029" />
 
     <Button
         android:id="@+id/logIn"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="log in"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,19 +58,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintVertical_bias="0.146" />
 
     <Button
         android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="154dp"
         android:text="Sign up"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/forget"
-        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logIn"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.674" />
 
     <Button
         android:id="@+id/forget"
@@ -77,9 +80,8 @@
         android:text="Forget Password?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.99"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logIn"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintTop_toBottomOf="@+id/signup"
+        app:layout_constraintVertical_bias="0.847" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
