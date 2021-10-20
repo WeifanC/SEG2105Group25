@@ -59,7 +59,7 @@ public class AddClassPage extends AppCompatActivity {
 
                 displayClassList(databaseHelper);
 
-                //Toast.makeText(AddClassPage.this, allclass.toString(), Toast.LENGTH_SHORT).show();
+
 
             }
         });
