@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     //  Testing admin.
     public void AccountConfirmed(String User, String UserPassword) {
         if ((User.equals("admin")) && (UserPassword.equals("admin123"))) {
-            Intent intent = new Intent(MainActivity.this, Second_page.class);
+            Intent intent = new Intent(MainActivity.this, AddClassPage.class);
             startActivity(intent);
         }
     }

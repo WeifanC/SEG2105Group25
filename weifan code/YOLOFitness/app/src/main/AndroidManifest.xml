@@ -19,6 +19,9 @@
             android:name=".Second_page"
             android:exported="false" />
         <activity
+            android:name=".AddClassPage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
