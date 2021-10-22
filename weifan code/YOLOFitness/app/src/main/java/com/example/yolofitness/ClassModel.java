@@ -10,8 +10,6 @@ public class ClassModel {
         this.name = name;
         this.description = description;
     }
-    public ClassModel(){
-    }
 
     @Override
     public String toString() {

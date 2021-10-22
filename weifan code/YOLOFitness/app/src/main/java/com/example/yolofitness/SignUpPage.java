@@ -30,15 +30,15 @@ public class SignUpPage extends AppCompatActivity {
         signupConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user_account =AccountNum.getText().toString();
-                String password = signupPassword.getText().toString();
-                String member_identity = tv_identity.getText().toString();
-                boolean Account_add =database.add_accountdata(user_account,password,member_identity);
-                if (user_account.equals("")|| password.equals("")|| tv_identity.equals("")){
-                    Toast.makeText((SignUpPage.this), "invalid input",Toast.LENGTH_SHORT).show();
-
+                UserModel userModel;
+                try {
+                    userModel = new UserModel(-1, AccountNum.getText().toString(), tv_identity.getText().toString(), signupPassword.getText().toString());
+                }catch (Exception e){
+                    Toast.makeText(SignUpPage.this, "invalid input", Toast.LENGTH_SHORT).show();
+                    userModel = new UserModel(-1,"error","error","error");
                 }
-                if(Account_add ==false) {
+                boolean Account_add =database.add_accountdata(userModel);
+                if(!Account_add) {
                     Toast.makeText((SignUpPage.this), "please try different account", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(SignUpPage.this,"registered complete",Toast.LENGTH_LONG).show();

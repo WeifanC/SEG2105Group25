@@ -15,9 +15,11 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CLASS_TABLE = "CLASS_TABLE";
+    public static final String USER_TABLE = "USER_TABLE";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_CLASS_NAME = "CLASS_NAME";
     public static final String COLUMN_CLASS_DESCRIPT = "CLASS_DESCRIPT";
+    public static final String COLUMN_ID2 = "ID2";
     public static final String User_name = "memberName";
     public static final String Password = "password";
     public static final String identity = "AccountIdentity";
@@ -26,21 +28,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(@Nullable Context context) {
 
-        super(context, "class.db", null, 1);
+        super(context, "Database.db", null, 1);
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqldb) {
-        String createTableStatement = "CREATE TABLE " + CLASS_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLASS_NAME + " TEXT, " + COLUMN_CLASS_DESCRIPT + " TEXT)";
-        sqldb.execSQL(createTableStatement);
-        sqldb.execSQL("create TABLE users(User_name TEXT primary key, password TEXT, identity TEXT)");
-
+        String classtable = "CREATE TABLE " + CLASS_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLASS_NAME + " TEXT, " + COLUMN_CLASS_DESCRIPT + " TEXT)";
+        sqldb.execSQL(classtable);
+        String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + User_name + " TEXT, " + Password + " TEXT, " + identity +" TEXT)";
+        sqldb.execSQL(usertable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqldb, int i, int i1) {
-        sqldb.execSQL("drop TABLE if exists users");
+        sqldb.execSQL("DROP TABLE if exists " + CLASS_TABLE);
+        sqldb.execSQL("DROP TABLE if exists " + USER_TABLE);
+        onCreate(sqldb);
+
 
     }
 
@@ -88,12 +93,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allList;
     }
 
-    public boolean add_accountdata(String User_name, String Password, String identity) {
+    public boolean add_accountdata(UserModel userModel) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         ContentValues value = new ContentValues();
-        value.put("memberName", User_name);
-        value.put("password", Password);
-        value.put( "identity",identity);
+        value.put(User_name, userModel.getUsername());
+        value.put(Password, userModel.getPassword());
+        value.put(identity, userModel.getIdentity());
         long Account = sqldb.insert("users", null, value);
         if (Account == 1) {
             return false;
