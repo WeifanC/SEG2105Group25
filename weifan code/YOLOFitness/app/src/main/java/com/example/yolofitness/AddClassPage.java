@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AddClassPage extends AppCompatActivity {
 
-    public Button bt_add,bt_delete;
+    public Button bt_add,bt_delete,bt_modifyAccount;
     public EditText tx_classname,tx_description;
     public ListView list_class;
 
@@ -29,10 +29,19 @@ public class AddClassPage extends AppCompatActivity {
         tx_classname = findViewById(R.id.tx_classname);
         tx_description = findViewById(R.id.tx_description);
         list_class = findViewById(R.id.list_class);
+        bt_modifyAccount = findViewById(R.id.modifyAccount);
 
         DatabaseHelper  databaseHelper = new DatabaseHelper(AddClassPage.this);
         displayClassList(databaseHelper);
+        bt_modifyAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View v) {
+               DatabaseHelper databaseHelper = new DatabaseHelper(AddClassPage.this);
+               Toast.makeText(AddClassPage.this,"Both users and instructors  Account has been deleted",Toast.LENGTH_LONG).show();
 
+
+           }
+         });
         bt_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

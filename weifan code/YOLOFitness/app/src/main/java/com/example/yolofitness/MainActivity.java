@@ -41,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String id =UserID.getText().toString();
                 String password = Password.getText().toString();
+                Admin (id,password);
+
+                if(id.equals("") || password.equals("")){
+                    Toast.makeText(MainActivity.this, "Invalid input",Toast.LENGTH_SHORT).show();
+
+                }
 
                     boolean validate_account = database.Verify_password(id,password);
                             if (validate_account ==true){
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //  Testing admin.
-    public void AccountConfirmed(String User, String UserPassword) {
+    public void Admin(String User, String UserPassword) {
         if ((User.equals("admin")) && (UserPassword.equals("admin123"))) {
             Intent intent = new Intent(MainActivity.this, AddClassPage.class);
             startActivity(intent);
