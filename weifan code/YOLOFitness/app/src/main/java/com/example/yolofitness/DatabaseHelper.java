@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID2 = "ID2";
     public static final String User_name = "memberName";
     public static final String Password = "password";
-    public static final String identity = "AccountIdentity";
+    public static final String Name = "Name";
 
 
 
@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqldb) {
         String classtable = "CREATE TABLE " + CLASS_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLASS_NAME + " TEXT, " + COLUMN_CLASS_DESCRIPT + " TEXT)";
         sqldb.execSQL(classtable);
-        String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + User_name + " TEXT, " + Password + " TEXT, " + identity +" TEXT)";
+        String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + User_name + " TEXT, " + Password + " TEXT, " + Name +" TEXT)";
         sqldb.execSQL(usertable);
     }
 
@@ -98,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
         value.put(User_name, userModel.getUsername());
         value.put(Password, userModel.getPassword());
-        value.put(identity, userModel.getIdentity());
+        value.put(Name, userModel.getIdentity());
         long Account = sqldb.insert("users", null, value);
         if (Account == 1) {
             return false;

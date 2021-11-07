@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class SignUpPage extends AppCompatActivity {
-    public EditText AccountNum, signupPassword, tv_identity;
-    public Button signupConfirm, studentbutton,instructorbutton;
+    public EditText AccountNum, signupPassword,tv_lastname;
+
+
+    public Button signupConfirm;
     DatabaseHelper database;
 
 
@@ -24,7 +27,7 @@ public class SignUpPage extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_page);
         AccountNum = (EditText)findViewById(R.id.signuppage_user);
         signupPassword = (EditText)findViewById(R.id.signuppage_password);
-        tv_identity = (EditText)findViewById(R.id.identity);
+        tv_lastname = (EditText)findViewById(R.id.name);
         signupConfirm = (Button) findViewById(R.id.confirmbotton);
         database = new DatabaseHelper(this);
         signupConfirm.setOnClickListener(new View.OnClickListener() {
@@ -32,7 +35,7 @@ public class SignUpPage extends AppCompatActivity {
             public void onClick(View v) {
                 UserModel userModel;
                 try {
-                    userModel = new UserModel(-1, AccountNum.getText().toString(), tv_identity.getText().toString(), signupPassword.getText().toString());
+                    userModel = new UserModel(-1, AccountNum.getText().toString(), signupPassword.getText().toString(),tv_lastname.getText().toString());
                 }catch (Exception e){
                     Toast.makeText(SignUpPage.this, "invalid input", Toast.LENGTH_SHORT).show();
                     userModel = new UserModel(-1,"error","error","error");
@@ -43,8 +46,6 @@ public class SignUpPage extends AppCompatActivity {
                 }else {
                     Toast.makeText(SignUpPage.this,"registered complete",Toast.LENGTH_LONG).show();
                 }
-
-
 
                 Intent intent = new Intent(SignUpPage.this, MainActivity.class);
                 startActivity(intent);

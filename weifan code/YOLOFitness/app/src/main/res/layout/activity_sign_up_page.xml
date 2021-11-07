@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".SignUpPage">
 
     <EditText
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/signuppage_user"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:ems="10"
         android:hint="@string/account"
+        android:drawableLeft="@drawable/ic_account_icon"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +25,7 @@
 
     <EditText
         android:id="@+id/signuppage_password"
+        android:drawableLeft="@drawable/ic_password_icon"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -35,31 +39,32 @@
         app:layout_constraintTop_toBottomOf="@+id/signuppage_user"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <Button
         android:id="@+id/confirmbotton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/confirm"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signuppage_password"
-        app:layout_constraintVertical_bias="0.548" />
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintVertical_bias="0.308" />
 
     <EditText
-        android:id="@+id/identity"
+        android:id="@+id/name"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="@string/identity"
+        android:hint="Name"
+        android:drawableLeft="@drawable/ic_name_icon"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/confirmbotton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signuppage_password"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/signuppage_password" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

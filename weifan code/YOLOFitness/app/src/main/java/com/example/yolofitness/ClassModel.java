@@ -4,6 +4,7 @@ public class ClassModel {
     private int id;
     private String name;
     private String description;
+    private String firstname;
 
     public ClassModel(int id, String name, String description) {
         this.id = id;
