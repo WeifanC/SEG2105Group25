@@ -1,5 +1,7 @@
 package com.example.yolofitness;
 
+
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
 
 public class SignUpPage extends AppCompatActivity {
     public EditText AccountNum, signupPassword,tv_lastname;
@@ -40,15 +43,20 @@ public class SignUpPage extends AppCompatActivity {
                     Toast.makeText(SignUpPage.this, "invalid input", Toast.LENGTH_SHORT).show();
                     userModel = new UserModel(-1,"error","error","error");
                 }
-                boolean Account_add =database.add_accountdata(userModel);
-                if(!Account_add) {
-                    Toast.makeText((SignUpPage.this), "please try different account", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(SignUpPage.this,"registered complete",Toast.LENGTH_LONG).show();
-                }
 
-                Intent intent = new Intent(SignUpPage.this, MainActivity.class);
-                startActivity(intent);
+                boolean verifyacc = database.Verify_Account(userModel.getUsername());
+                if(verifyacc == false) {
+                    boolean insert = database.addUser(userModel);
+                    if (insert == true){
+                        Toast.makeText(SignUpPage.this,"registered complete",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(SignUpPage.this, MainActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(SignUpPage.this,"registered failed",Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText((SignUpPage.this), "please try different account", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -57,6 +65,8 @@ public class SignUpPage extends AppCompatActivity {
 
 
     }
+
+
 
 
 
