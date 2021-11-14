@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID2 = "ID2";
     public static final String COLUMN_USER = "USER";
     public static final String COLUMN_PASS = "PASS";
-    public static final String COLUMN_IDF = "IDENTITY";
+    public static final String COLUMN_IDENTITY = "IDENTITY";
 
 
 
@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqldb) {
         String classtable = "CREATE TABLE " + CLASS_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLASS_NAME + " TEXT, " + COLUMN_CLASS_DESCRIPT + " TEXT)";
-        String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER + " TEXT, " + COLUMN_PASS + " TEXT, " + COLUMN_IDF +" TEXT)";
+        String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER + " TEXT, " + COLUMN_PASS + " TEXT, " + COLUMN_IDENTITY +" TEXT)";
         sqldb.execSQL(usertable);
         sqldb.execSQL(classtable);
     }
@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues value = new ContentValues();
         value.put(COLUMN_USER, userModel.getUsername());
         value.put(COLUMN_PASS, userModel.getPassword());
-        value.put(COLUMN_IDF, userModel.getIdentity());
+        value.put(COLUMN_IDENTITY, userModel.getIdentity());
         long result = sqldb.insert(USER_TABLE, null, value);
         return result != -1;
 
@@ -116,9 +116,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean Verify_password(String username, String password){
+    public boolean Verify_password(String username, String password, String identity){
         SQLiteDatabase sqldb = this.getWritableDatabase();
-        Cursor Accountinfo = sqldb.rawQuery("SELECT* FROM USER_TABLE where USER = ? and PASS = ?", new String[]{username, password});
+        Cursor Accountinfo = sqldb.rawQuery("SELECT* FROM USER_TABLE where USER = ? and PASS = ? and IDENTITY = ?", new String[]{username, password, identity});
         if (Accountinfo.getCount()>0){
             return true;
         }else{
@@ -126,13 +126,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
     }
-    public boolean Verify_identify(String member_identity ){
-        SQLiteDatabase sqldb = this.getWritableDatabase();
-        Cursor identify = sqldb.rawQuery("SELECT * FROM USER_TABLE where IDENTITY = ?", new String[]{member_identity});
-        if (identify.getCount()>0){
-            return true;
-        }else{
-            return false;
-        }
-    }
+//    public boolean Verify_identify(String member_identity ){
+//        SQLiteDatabase sqldb = this.getWritableDatabase();
+//        Cursor identify = sqldb.rawQuery("SELECT * FROM USER_TABLE where IDENTITY = ?", new String[]{member_identity});
+//        if (identify.getCount()>0){
+//            return true;
+//        }else{
+//            return false;
+//        }
+//    }
 }

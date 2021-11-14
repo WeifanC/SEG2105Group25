@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
 public class SignUpPage extends AppCompatActivity {
-    public EditText AccountNum, signupPassword,tv_lastname;
+    public EditText AccountNum, signupPassword;
+    public Switch sign_identity;
 
 
     public Button signupConfirm;
@@ -30,20 +32,26 @@ public class SignUpPage extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_page);
         AccountNum = (EditText)findViewById(R.id.signuppage_user);
         signupPassword = (EditText)findViewById(R.id.signuppage_password);
-        tv_lastname = (EditText)findViewById(R.id.name);
+        sign_identity = (Switch) findViewById(R.id.sw_signup);
         signupConfirm = (Button) findViewById(R.id.confirmbotton);
         database = new DatabaseHelper(this);
         signupConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean switchState = sign_identity.isChecked();
+                String identify;
+                if (switchState){
+                    identify = "Instructor";
+                }else{
+                    identify = "Member";
+                }
                 UserModel userModel;
                 try {
-                    userModel = new UserModel(-1, AccountNum.getText().toString(), signupPassword.getText().toString(),tv_lastname.getText().toString());
+                    userModel = new UserModel(-1, AccountNum.getText().toString(), signupPassword.getText().toString(),identify);
                 }catch (Exception e){
                     Toast.makeText(SignUpPage.this, "invalid input", Toast.LENGTH_SHORT).show();
                     userModel = new UserModel(-1,"error","error","error");
                 }
-
                 boolean verifyacc = database.Verify_Account(userModel.getUsername());
                 if(verifyacc == false) {
                     boolean insert = database.addUser(userModel);
