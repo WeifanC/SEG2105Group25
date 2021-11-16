@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YOLOFitness">
         <activity
+            android:name=".instructor_page"
+            android:exported="false" />
+        <activity
             android:name=".Displaypage"
             android:exported="false" />
         <activity
