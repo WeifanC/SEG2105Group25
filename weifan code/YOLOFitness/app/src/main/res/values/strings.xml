@@ -17,7 +17,7 @@
     // sign_up page
     <string name="account">Account</string>
     <string name="identity">Student or Instructor?</string>
-    <string name="confirm">Confirm</string>>
+    <string name="confirm">Confirm</string>
 
     // modify page
     <string name="difficulty">Difficulty</string>
