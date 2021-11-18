@@ -2,6 +2,7 @@ package com.example.yolofitness;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,15 +23,13 @@ import android.widget.Toast;
 
 
 public class modifycourse_page extends AppCompatActivity {
-    public EditText Difficulty;
     public Button Confirm;
-    public String difficulty;
     DatabaseHelper databaseHelper;
     private static final String TAG = "TestDatePickerActivity";
     private TextView mDatePicker;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private NumberPicker Hours = null;
-    String[] gradeArray = {"Easy", "Moderate ", "Hard"};
+    String[] difficultyArray = {"Easy", "Moderate ", "Hard"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +43,8 @@ public class modifycourse_page extends AppCompatActivity {
         Hours.setMaxValue(2);
         Hours.setValue(1);
         Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> gradeAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, gradeArray);
-        spinner.setAdapter(gradeAdapter);
+        ArrayAdapter<String> difficuty = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, difficultyArray);
+        spinner.setAdapter(difficuty);
         spinner.setSelection(0);
         spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
@@ -53,6 +52,8 @@ public class modifycourse_page extends AppCompatActivity {
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(modifycourse_page.this, instructor_page.class);
+                startActivity(intent);
             }
         });
         Hours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -92,7 +93,7 @@ public class modifycourse_page extends AppCompatActivity {
         class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(modifycourse_page.this, gradeArray[i], Toast.LENGTH_SHORT).show();
+                Toast.makeText(modifycourse_page.this, difficultyArray[i], Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
