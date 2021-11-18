@@ -2,49 +2,103 @@ package com.example.yolofitness;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.content.Intent;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.Calendar;
 import android.app.DatePickerDialog;
 import android.widget.DatePicker;
-
-import java.util.Locale;
+import android.widget.Toast;
 
 
 public class modifycourse_page extends AppCompatActivity {
-    public EditText Difficulty, Day, Hours;
+    public EditText Difficulty;
     public Button Confirm;
-    public String difficulty,day,hours;
+    public String difficulty;
     DatabaseHelper databaseHelper;
+    private static final String TAG = "TestDatePickerActivity";
+    private TextView mDatePicker;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private NumberPicker Hours = null;
+    String[] gradeArray = {"Easy", "Moderate ", "Hard"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifycourse_page);
-        Difficulty = (EditText)findViewById(R.id.modify_difficulty);
-        Day = (Button)findViewById(R.id.modify_day);
-        Hours = (EditText)findViewById(R.id.modify_hours) ;
-        Confirm =(Button) findViewById(R.id.modify_confirm);
+        mDatePicker = (TextView) findViewById(R.id.modify_date);
+        Confirm = (Button) findViewById(R.id.modify_confirm);
         databaseHelper = new DatabaseHelper(this);
+        Hours = (NumberPicker) findViewById(R.id.modify_hours);
+        Hours.setMinValue(1);
+        Hours.setMaxValue(2);
+        Hours.setValue(1);
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<String> gradeAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, gradeArray);
+        spinner.setAdapter(gradeAdapter);
+        spinner.setSelection(0);
+        spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+
 
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                difficulty=Difficulty.getText().toString();
-                hours=Hours.getText().toString();
-                if (difficulty.equals("1")||difficulty.equals("2")||difficulty.equals("3")){
-                }
             }
         });
-        Day.setOnClickListener(new View.OnClickListener() {
+        Hours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                Toast.makeText(modifycourse_page.this, "This class is " + newVal + " hour long.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        modifycourse_page.this,
+                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                        mDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
             }
         });
-}
-}
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
+                int rm = month + 1;
+                mDatePicker.setText(year + "/" + rm + "/" + dayOfMonth);
+            }
+        };
+    }
+
+        class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(modifycourse_page.this, gradeArray[i], Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        }
+    }
+
+
+

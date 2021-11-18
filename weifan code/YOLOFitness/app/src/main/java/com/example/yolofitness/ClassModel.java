@@ -5,16 +5,18 @@ public class ClassModel {
     private String name;
     private String description;
     private String firstname;
-    private String time;
-    private int difficulty;
+    private String date;
+    private String hours;
+    private String difficulty;
 
 
-    public ClassModel(int id, String name, String description,int difficulty,String time) {
+    public ClassModel(int id, String name, String description,String difficulty,String date,String hours) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.difficulty=difficulty;
-        this.time=time;
+        this.date=date;
+        this.hours=hours;
     }
 
     @Override
@@ -38,13 +40,17 @@ public class ClassModel {
         return description;
     }
 
-    public int getDifficulty(){return difficulty;}
+    public String getDifficulty(){return difficulty;}
 
-    public void setDifficulty(int difficulty){this.difficulty=difficulty;}
+    public void setDifficulty(String difficulty){this.difficulty=difficulty;}
 
-    public String getTime(){return time;}
+    public String getDate(){return date;}
 
-    public void setTime(String time){this.time=time;}
+    public void setDate(String date){this.date=date;}
+
+    public String getHours(){return hours;}
+
+    public void setHours(String hours){this.hours=hours;}
 
     public void setId(int id) {
         this.id = id;

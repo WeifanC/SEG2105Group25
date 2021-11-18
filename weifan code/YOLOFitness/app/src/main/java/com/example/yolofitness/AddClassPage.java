@@ -47,11 +47,11 @@ public class AddClassPage extends AppCompatActivity {
             public void onClick(View v) {
                 ClassModel classModel;
                 try {
-                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),1,tx_time.getText().toString());
+                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"Easy","2021/11/21","1");
                     Toast.makeText(AddClassPage.this, classModel.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(AddClassPage.this, "Error create class", Toast.LENGTH_SHORT).show();
-                    classModel = new ClassModel(-1,"error","no detail",0,"null");
+                    classModel = new ClassModel(-1,"error","no detail","error","null","null");
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(AddClassPage.this);

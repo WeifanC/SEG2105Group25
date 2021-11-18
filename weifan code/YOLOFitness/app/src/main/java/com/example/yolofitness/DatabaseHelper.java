@@ -80,9 +80,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int classID = cursor.getInt(0);
                 String className = cursor.getString(1);
                 String classDes = cursor.getString(2);
-                int classdifficulty=cursor.getInt(3);
-                String classtime=cursor.getString(4);
-                ClassModel newclass = new ClassModel(classID, className, classDes,classdifficulty,classtime);
+                String classdifficulty=cursor.getString(3);
+                String classdate=cursor.getString(4);
+                String classhours=cursor.getString(5);
+                ClassModel newclass = new ClassModel(classID, className, classDes,classdifficulty,classdate,classhours);
                 allList.add(newclass);
 
             } while (cursor.moveToNext());
