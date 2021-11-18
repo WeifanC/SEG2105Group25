@@ -16,7 +16,7 @@ import java.util.List;
 public class AddClassPage extends AppCompatActivity {
 
     public Button bt_add,bt_delete,bt_modifyAccount;
-    public EditText tx_classname,tx_description;
+    public EditText tx_classname,tx_description,tx_difficulty,tx_time;
     public ListView list_class;
 
 
@@ -47,11 +47,11 @@ public class AddClassPage extends AppCompatActivity {
             public void onClick(View v) {
                 ClassModel classModel;
                 try {
-                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString());
+                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),1,tx_time.getText().toString());
                     Toast.makeText(AddClassPage.this, classModel.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(AddClassPage.this, "Error create class", Toast.LENGTH_SHORT).show();
-                    classModel = new ClassModel(-1,"error","no detail");
+                    classModel = new ClassModel(-1,"error","no detail",0,"null");
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(AddClassPage.this);
