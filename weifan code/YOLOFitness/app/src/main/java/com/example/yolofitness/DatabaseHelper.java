@@ -80,8 +80,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int classID = cursor.getInt(0);
                 String className = cursor.getString(1);
                 String classDes = cursor.getString(2);
-
-                ClassModel newclass = new ClassModel(classID, className, classDes);
+                int classdifficulty=cursor.getInt(3);
+                String classtime=cursor.getString(4);
+                ClassModel newclass = new ClassModel(classID, className, classDes,classdifficulty,classtime);
                 allList.add(newclass);
 
             } while (cursor.moveToNext());
@@ -124,6 +125,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else{
             return false;
 
+        }
+    }
+    public boolean Verify_Classname(String classname) {
+        SQLiteDatabase sqldb = this.getWritableDatabase();
+        Cursor classn = sqldb.rawQuery("SELECT * FROM " + CLASS_TABLE + " where Classname like ?", new String[]{classname});
+        if (classn.getCount() > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 //    public boolean Verify_identify(String member_identity ){
