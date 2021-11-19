@@ -12,6 +12,8 @@
         android:layout_width="239dp"
         android:layout_height="297dp"
         android:text="Welcome, User You are now successfully sign in as student/instructor"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

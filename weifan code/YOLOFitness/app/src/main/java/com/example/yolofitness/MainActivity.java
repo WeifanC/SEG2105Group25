@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(MainActivity.this, Displaypage.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                }else if (verify == true && identify == "Instructor"){
+                    Toast.makeText(MainActivity.this,"Login successfully",Toast.LENGTH_LONG).show();
+                    bundle.putString("user", id);
+                    bundle.putString("identify", identify);
+                    intent = new Intent(MainActivity.this, instructor_page.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(MainActivity.this,"Information incorrected",Toast.LENGTH_LONG).show();
                 }
