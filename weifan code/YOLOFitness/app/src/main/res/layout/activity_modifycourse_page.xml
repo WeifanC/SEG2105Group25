@@ -76,4 +76,16 @@
         app:layout_constraintTop_toBottomOf="@+id/modify_date"
         app:layout_constraintVertical_bias="0.614" />
 
+    <Button
+        android:id="@+id/modify_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modify_date"
+        app:layout_constraintVertical_bias="0.614" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

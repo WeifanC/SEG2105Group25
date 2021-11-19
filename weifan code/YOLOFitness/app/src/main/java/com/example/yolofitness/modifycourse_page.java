@@ -30,6 +30,9 @@ public class modifycourse_page extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private NumberPicker Hours = null;
     String[] difficultyArray = {"Easy", "Moderate ", "Hard"};
+    private String classdifficult;
+    private String classdate;
+    private String classhours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class modifycourse_page extends AppCompatActivity {
         Hours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Toast.makeText(modifycourse_page.this, "This class is " + newVal + " hour long.", Toast.LENGTH_SHORT).show();
+                classhours=newVal+"";
+                Toast.makeText(modifycourse_page.this, "This class is " + classhours + " hour long.", Toast.LENGTH_SHORT).show();
             }
         });
         mDatePicker.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +90,8 @@ public class modifycourse_page extends AppCompatActivity {
                 Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
                 int rm = month + 1;
                 mDatePicker.setText(year + "/" + rm + "/" + dayOfMonth);
+                classdate=year + "/" + rm + "/" + dayOfMonth;
+                Toast.makeText(modifycourse_page.this, classdate, Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -93,7 +99,8 @@ public class modifycourse_page extends AppCompatActivity {
         class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(modifycourse_page.this, difficultyArray[i], Toast.LENGTH_SHORT).show();
+                classdifficult=difficultyArray[i];
+                Toast.makeText(modifycourse_page.this, classdifficult, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {

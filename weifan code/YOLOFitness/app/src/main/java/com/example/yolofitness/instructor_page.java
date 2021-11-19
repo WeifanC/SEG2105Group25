@@ -32,15 +32,15 @@ public class instructor_page extends AppCompatActivity {
         bt_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                classname=ET_search.getText().toString();
-                boolean verify = database.Verify_Classname(classname);
-                if (verify) {
+///                classname=ET_search.getText().toString();
+///                boolean verify = database.Verify_Classname(classname);
+ ///               if (verify) {
                     Intent intent = new Intent(instructor_page.this, modifycourse_page.class);
                     startActivity(intent);
-                }
-                else {
-                    Toast.makeText(instructor_page.this,"Classname incorrected",Toast.LENGTH_LONG).show();
-                }
+ ///               }
+ ///               else {
+ ///                   Toast.makeText(instructor_page.this,"Classname incorrected",Toast.LENGTH_LONG).show();
+///               }
                 }
             });
         }
