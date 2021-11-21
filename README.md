@@ -13,3 +13,13 @@ see welcome page
 admin can create a type class enter nam and description
 admin delete class by clicking the list on manage page
 admin can delete all members by click the button on manage page
+
+Deliverable 2:
+
+our project known bugs:
+none
+
+finished tasks:
+1 instrustor modify （level of diffcult(class) +time modify) 
+2. instuctro modify(cancel class+ capacity limit + view all calss(database)
+3. search bar+ validation for all fields.

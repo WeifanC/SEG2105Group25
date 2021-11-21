@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ccede131-5452-4e16-8d0c-e33cda8ba4d8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/AddClassPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/AddClassPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/ClassModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/ClassModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/DatabaseHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/modifycourse_page.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/modifycourse_page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_addclasspage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_addclasspage.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_modifycourse_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_modifycourse_page.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
