@@ -1,5 +1,6 @@
 package com.example.yolofitness;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +10,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.time.LocalDate;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
@@ -18,6 +22,7 @@ public class AddClassPage extends AppCompatActivity {
     public Button bt_add,bt_delete,bt_modifyAccount;
     public EditText tx_classname,tx_description,tx_difficulty,tx_time;
     public ListView list_class;
+    public DatabaseHelper database;
 
 
     @Override
@@ -31,8 +36,8 @@ public class AddClassPage extends AppCompatActivity {
         list_class = findViewById(R.id.list_class);
         bt_modifyAccount = findViewById(R.id.modifyAccount);
 
-        DatabaseHelper  databaseHelper = new DatabaseHelper(AddClassPage.this);
-        displayClassList(databaseHelper);
+        database = new DatabaseHelper(this);
+        displayClassList(database);
         bt_modifyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
@@ -43,15 +48,17 @@ public class AddClassPage extends AppCompatActivity {
            }
          });
         bt_add.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 ClassModel classModel;
                 try {
-                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"Easy","2021/11/21","1");
+                    String currentdate = LocalDate.now().toString();
+                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"null","Easy",currentdate,"1","0");
                     Toast.makeText(AddClassPage.this, classModel.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(AddClassPage.this, "Error create class", Toast.LENGTH_SHORT).show();
-                    classModel = new ClassModel(-1,"error","no detail","error","null","null");
+                    classModel = new ClassModel(-1,"error","no detail","error","error","null","null","null");
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(AddClassPage.this);
@@ -76,8 +83,8 @@ public class AddClassPage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ClassModel clickedClass = (ClassModel) adapterView.getItemAtPosition(i);
-                databaseHelper.deleteone(clickedClass);
-                displayClassList(databaseHelper);
+                database.deleteone(clickedClass);
+                displayClassList(database);
                 Toast.makeText(AddClassPage.this, "Deleted " + clickedClass.toString(), Toast.LENGTH_SHORT).show();
 
             }

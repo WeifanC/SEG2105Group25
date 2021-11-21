@@ -4,28 +4,42 @@ public class ClassModel {
     private int id;
     private String name;
     private String description;
-    private String firstname;
+    private String instructor;
     private String date;
     private String hours;
     private String difficulty;
+    private String capacity;
 
 
-    public ClassModel(int id, String name, String description,String difficulty,String date,String hours) {
+    public ClassModel(int id, String name, String description,String instructor, String difficulty,String date,String hours,String capacity) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.instructor = instructor;
         this.difficulty=difficulty;
         this.date=date;
         this.hours=hours;
+        this.capacity = capacity;
     }
 
     @Override
     public String toString() {
-        return "ClassID" +
-                "=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return
+                "Class = " + name  +
+                ", description = '" + description  +
+                ", instructor = '" + instructor +
+                ", difficulty = '" + difficulty  +
+                ", date = '" + date +
+                ", hours = '" + hours +
+                ", capacity = '" + capacity;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
     }
 
     public int getId() {
@@ -62,5 +76,13 @@ public class ClassModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
     }
 }

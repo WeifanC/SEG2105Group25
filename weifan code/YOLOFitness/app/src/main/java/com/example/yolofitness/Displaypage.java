@@ -22,22 +22,24 @@ public class Displaypage extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displaypage);
         Bundle bundle = getIntent().getExtras();
+        ID = bundle.getString("user");
+        identity = bundle.getString("identify");
+        msg_welcome = (TextView) findViewById(R.id.textView2);
+        msg_welcome.setText("Welcome "+ ID + ", You are now successfully sign in as "+ identity+".");
         timer = new Timer();
+        Bundle finalBundle = bundle;
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                ;
-                ID = bundle.getString("user");
-                identity = bundle.getString("identify");
-                msg_welcome = (TextView) findViewById(R.id.textView2);
-                msg_welcome.setText("Welcome "+ ID + ", You are now successfully sign in as "+ identity+".");
                 if (identity.equals("Instructor")){
                     Intent intent = new Intent(Displaypage.this,instructor_page.class);
+                    intent.putExtras(finalBundle);
                     startActivity(intent);
                 }else{
                     // member page
