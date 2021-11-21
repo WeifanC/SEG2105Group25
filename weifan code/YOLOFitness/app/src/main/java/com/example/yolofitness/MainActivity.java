@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.renderscript.*;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
     public EditText UserID, Password;
     public Button logInbotton,signupbotton, forgetBotton;
-    RenderScript Rscript;
+    public Switch login_indentity;
+    public String id,password,identify;
+    boolean switchState;
     DatabaseHelper database;
 
     @Override
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         UserID = (EditText)findViewById(R.id.User);
         Password = (EditText)findViewById(R.id.password);
+        login_indentity = (Switch)findViewById(R.id.sw_login);
+        switchState = login_indentity.getShowText();
         logInbotton = (Button) findViewById(R.id.logIn);
         signupbotton =(Button) findViewById(R.id.signup);
         forgetBotton = (Button) findViewById(R.id.forget);
@@ -39,17 +44,34 @@ public class MainActivity extends AppCompatActivity {
         logInbotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id =UserID.getText().toString();
-                String password = Password.getText().toString();
-
-                    boolean validate_account = database.Verify_password(id,password);
-                            if (validate_account ==true){
-
-                                Intent intent = new Intent(getApplicationContext(),Displaypage.class);
-
-
-                            }
+                id =UserID.getText().toString();
+                password = Password.getText().toString();
+                switchState = login_indentity.isChecked();
+                if (switchState){
+                    identify = "Instructor";
+                }else{
+                    identify = "Member";
                 }
+                Intent intent;
+                //pass information to another activity
+                Bundle bundle = new Bundle();
+                boolean verify = database.Verify_password(id,password,identify);
+                if ((id.equals("admin")) && (password.equals("admin123"))) {
+                    intent = new Intent(MainActivity.this, AddClassPage.class);
+                    startActivity(intent);
+                }else if (verify == true){
+                    Toast.makeText(MainActivity.this,"Login successfully",Toast.LENGTH_LONG).show();
+                    bundle.putString("user", id);
+                    bundle.putString("identify", identify);
+                    intent = new Intent(MainActivity.this, Displaypage.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(MainActivity.this,"Information incorrected",Toast.LENGTH_LONG).show();
+                }
+
+
+            }
 
 
 
@@ -58,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //  Testing admin.
-    public void AccountConfirmed(String User, String UserPassword) {
+    /*public void Admin(String User, String UserPassword) {
         if ((User.equals("admin")) && (UserPassword.equals("admin123"))) {
             Intent intent = new Intent(MainActivity.this, AddClassPage.class);
             startActivity(intent);
         }
-    }
+
+    }*/
 }
 
 

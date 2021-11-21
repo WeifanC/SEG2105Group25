@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">YOLOFitness</string>
+    <string name="ClassName">Class Name</string>
+    <string name="ClassDescription">Class Description</string>
+    <string name="add">ADD</string>
+    <string name="viewall">viewall</string>
+    <string name="class_name">Class Name</string>
+    <string name="description">description</string>
+</resources>

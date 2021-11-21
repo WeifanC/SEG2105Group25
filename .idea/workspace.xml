@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6a67713-9ff6-4254-9024-63eeb747a24a" name="Default Changelist" comment="" />
+    <list default="true" id="ccede131-5452-4e16-8d0c-e33cda8ba4d8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/AddClassPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/AddClassPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/ClassModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/ClassModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/DatabaseHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/modifycourse_page.java" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/java/com/example/yolofitness/modifycourse_page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_addclasspage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_addclasspage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_modifycourse_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/layout/activity_modifycourse_page.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/weifan code/YOLOFitness/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1zh6GyX4ZNDybd6oSkX49uiisU2" />
+  <component name="ProjectId" id="20oKCWKt4jTM66eMoVUWFohUgFh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -21,15 +31,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f6a67713-9ff6-4254-9024-63eeb747a24a" name="Default Changelist" comment="" />
-      <created>1634587881384</created>
+      <changelist id="ccede131-5452-4e16-8d0c-e33cda8ba4d8" name="Default Changelist" comment="" />
+      <created>1636705375478</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1634587881384</updated>
+      <updated>1636705375478</updated>
     </task>
     <servers />
   </component>
