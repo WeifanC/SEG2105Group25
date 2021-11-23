@@ -92,18 +92,18 @@ public class modifycourse_page extends AppCompatActivity {
             }
         });
 
-//        Cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                databaseHelper.cancelclass(classid);
-//                Bundle finalBundle = new Bundle();;
-//                finalBundle.putString("user",instructor);
-//                Intent intent = new Intent(modifycourse_page.this, instructor_page.class);
-//                intent.putExtras(finalBundle);
-//                Toast.makeText(modifycourse_page.this, "This class is cancelled", Toast.LENGTH_SHORT).show();
-//                startActivity(intent);
-//            }
-//        });
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseHelper.cancelclass(classid);
+                Bundle finalBundle = new Bundle();;
+                finalBundle.putString("user",instructor);
+                Intent intent = new Intent(modifycourse_page.this, instructor_page.class);
+                intent.putExtras(finalBundle);
+                Toast.makeText(modifycourse_page.this, "This class is cancelled", Toast.LENGTH_SHORT).show();
+               startActivity(intent);
+           }
+        });
 
         Hours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
