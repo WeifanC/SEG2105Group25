@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background3"
     tools:context=".instructor_page">
 
 
@@ -24,7 +24,7 @@
         android:layout_width="142dp"
         android:layout_height="54dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="44dp"
         android:text="       Menu       "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ET_Search" />
@@ -50,7 +50,7 @@
         android:layout_width="303dp"
         android:layout_height="439dp"
         android:layout_marginTop="34dp"
-        android:background="@color/white"
+        android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.551"
