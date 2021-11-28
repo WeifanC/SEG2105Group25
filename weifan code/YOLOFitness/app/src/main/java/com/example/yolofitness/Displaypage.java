@@ -40,7 +40,8 @@ public class Displaypage extends AppCompatActivity {
                     startActivity(intent);
                 }else{
                     // member page
-                    Intent intent = new Intent(Displaypage.this, memberpage.class);
+                    Intent intent = new Intent(Displaypage.this,memberpage.class);
+                    intent.putExtras(finalBundle);
                     startActivity(intent);
                 }
 //                bt_instructor = findViewById(R.id.bt_instructor);
