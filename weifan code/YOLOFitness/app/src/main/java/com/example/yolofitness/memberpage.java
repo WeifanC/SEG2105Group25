@@ -13,9 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 public class memberpage extends AppCompatActivity {
-    public Button member_searchbutton;
+    public Button member_searchbutton,member_viewclass;
     public EditText member_searchbox;
     public ListView view_class;
+    public List list;
     DatabaseHelper database;
 
 
@@ -24,6 +25,7 @@ public class memberpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memberview_page);
         member_searchbutton = (Button) findViewById(R.id.member_searchbutton);
+        member_viewclass = (Button) findViewById(R.id.member_viewclass);
         member_searchbox = (EditText) findViewById(R.id.member_searchbox);
         view_class = (ListView) findViewById(R.id.view_class);
         database = new DatabaseHelper(this);
@@ -42,6 +44,17 @@ public class memberpage extends AppCompatActivity {
                     displayClassList(database);
                 }
 
+            }
+        });
+        member_viewclass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.clear();
+                ArrayAdapter adapter1 =new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
+                view_class.setAdapter(adapter1);
+                list=database.getAll();
+                ArrayAdapter adapter2 =new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
+                view_class.setAdapter(adapter2);
             }
         });
     }
