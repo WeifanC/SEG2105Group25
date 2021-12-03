@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class instructor_page extends AppCompatActivity {
@@ -30,11 +31,11 @@ public class instructor_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_page);
         hint = (TextView) findViewById(R.id.textView2);
-        bt_myclass = (Button) findViewById(R.id.bt_unenroll);
+        bt_myclass = (Button) findViewById(R.id.bt_myclass);
         bt_menu = (Button) findViewById(R.id.bt_backtomain);
         ET_search = (EditText)findViewById(R.id.ET_Search);
         bt_search = (Button)findViewById(R.id.bt_search);
-        lt_instructor = (ListView)findViewById(R.id.ltmember);
+        lt_instructor = (ListView)findViewById(R.id.LT_instructor);
         database = new DatabaseHelper(this);
         Bundle bundle;
         bundle = getIntent().getExtras();
@@ -76,8 +77,7 @@ public class instructor_page extends AppCompatActivity {
 ///               }
                 }
             });
-        bt_search.setOnClickListener(new View.OnClickListener()
-        {
+        bt_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String classn = ET_search.getText().toString();
@@ -105,6 +105,7 @@ public class instructor_page extends AppCompatActivity {
                     finalBundle.putString("classname",clickedClass.getName());
                     finalBundle.putString("diff",clickedClass.getDifficulty());
                     finalBundle.putString("date",clickedClass.getDate());
+                    finalBundle.putString("time",clickedClass.getTime());
                     finalBundle.putString("hours",clickedClass.getHours());
                     finalBundle.putString("capacity",clickedClass.getCapacity());
                     Intent intent = new Intent(instructor_page.this, modifycourse_page.class);

@@ -3,12 +3,9 @@ package com.example.yolofitness;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
-import android.view.View;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,6 +40,9 @@ public class Displaypage extends AppCompatActivity {
                     startActivity(intent);
                 }else{
                     // member page
+                    Intent intent = new Intent(Displaypage.this,memberpage.class);
+                    intent.putExtras(finalBundle);
+                    startActivity(intent);
                 }
 //                bt_instructor = findViewById(R.id.bt_instructor);
 //                bt_member = findViewById(R.id.bt_membercourse);

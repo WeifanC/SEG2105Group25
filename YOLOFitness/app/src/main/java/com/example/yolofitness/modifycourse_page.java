@@ -26,14 +26,16 @@ public class modifycourse_page extends AppCompatActivity {
     public Button Confirm,Cancel;
     DatabaseHelper databaseHelper;
     private static final String TAG = "TestDatePickerActivity";
-    private TextView mDatePicker,textcap;
-    private EditText et_cap;
+    private TextView texttime,textcap;
+    private EditText et_time,et_cap;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private NumberPicker Hours = null;
     String[] difficultyArray = {"Easy", "Moderate ", "Hard"};
+    String[] dateArray = {"Monday", "Tuesday ", "Wednesday","Thursday","Friday","Saturday","Sunday"};
     private int classid;
     private String classdifficult;
     private String classdate;
+    private String classtime;
     private String classhours;
     private String capacity;
 
@@ -45,14 +47,18 @@ public class modifycourse_page extends AppCompatActivity {
         classid = bundle.getInt("classid");
         classdifficult = bundle.getString("diff");
         classdate = bundle.getString("date");
+        classtime = bundle.getString("time");
         int hours = Integer.parseInt(bundle.getString("hours"));
         capacity = bundle.getString("capacity");
 
         setContentView(R.layout.activity_modifycourse_page);
-        mDatePicker = (TextView) findViewById(R.id.modify_date);
-        mDatePicker.setText(classdate);
+//        mDatePicker = (TextView) findViewById(R.id.modify_date);
+//        mDatePicker.setText(classdate);
 
         textcap =(TextView) findViewById(R.id.tx_cap);
+        texttime =(TextView) findViewById(R.id.tx_starttime);
+        et_time = (EditText) findViewById(R.id.et_starttime);
+        et_time.setText(classtime);
         et_cap = (EditText) findViewById(R.id.et_capacity);
         et_cap.setText(capacity);
         Confirm = (Button) findViewById(R.id.modify_confirm);
@@ -63,27 +69,42 @@ public class modifycourse_page extends AppCompatActivity {
         Hours.setMinValue(1);
         Hours.setMaxValue(5);
         Hours.setValue(hours);
-        Spinner spinner = findViewById(R.id.spinner);
+        Spinner spinnerdiff = findViewById(R.id.spinner);
         ArrayAdapter<String> difficuty = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, difficultyArray);
-        spinner.setAdapter(difficuty);
+        spinnerdiff.setAdapter(difficuty);
         for (int i =0; i<difficultyArray.length;i++){
             if (classdifficult.equals(difficultyArray[i])){
-                spinner.setSelection(i);
+                spinnerdiff.setSelection(i);
             }else{
-                spinner.setSelection(0);
+                spinnerdiff.setSelection(0);
             }
         }
-        spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+        spinnerdiff.setOnItemSelectedListener(new MyOnItemSelectedListener());
+
+        Spinner spinnerdate = findViewById(R.id.spinner_date);
+        ArrayAdapter<String> date = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, dateArray);
+        spinnerdate.setAdapter(date);
+        for (int i =0; i<dateArray.length;i++){
+            if (classdate.equals(dateArray[i])){
+                spinnerdate.setSelection(i);
+            }else{
+                spinnerdate.setSelection(0);
+            }
+        }
+        spinnerdate.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
 
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 capacity = et_cap.getText().toString();
+                classtime = et_time.getText().toString();
+
+                if (classtime.contains("[123456789]"))
                 if (classhours == null){
                     classhours = hours+"";
                 }
-                databaseHelper.UpdateClass(classid,instructor,classdifficult,classdate,classhours,capacity);
+                databaseHelper.UpdateClass(classid,instructor,classdifficult,classdate,classtime,classhours,capacity);
                 Bundle finalBundle = new Bundle();;
                 finalBundle.putString("user",instructor);
                 Intent intent = new Intent(modifycourse_page.this, instructor_page.class);
@@ -101,8 +122,8 @@ public class modifycourse_page extends AppCompatActivity {
                 Intent intent = new Intent(modifycourse_page.this, instructor_page.class);
                 intent.putExtras(finalBundle);
                 Toast.makeText(modifycourse_page.this, "This class is cancelled", Toast.LENGTH_SHORT).show();
-               startActivity(intent);
-           }
+                startActivity(intent);
+            }
         });
 
         Hours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -112,41 +133,41 @@ public class modifycourse_page extends AppCompatActivity {
                 Toast.makeText(modifycourse_page.this, "This class is " + classhours + " hour long.", Toast.LENGTH_SHORT).show();
             }
         });
-        mDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        modifycourse_page.this,
-                        android.R.style.Theme_Holo_Dialog_MinWidth,
-                        mDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
-                int rm = month + 1;
-                mDatePicker.setText(year + "/" + rm + "/" + dayOfMonth);
-                classdate=year + "/" + rm + "/" + dayOfMonth;
-                Toast.makeText(modifycourse_page.this, classdate, Toast.LENGTH_SHORT).show();
-            }
-        };
-    }
+//        mDatePicker.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Calendar cal = Calendar.getInstance();
+//                int year = cal.get(Calendar.YEAR);
+//                int month = cal.get(Calendar.MONTH);
+//                int day = cal.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog dialog = new DatePickerDialog(
+//                        modifycourse_page.this,
+//                        android.R.style.Theme_Holo_Dialog_MinWidth,
+//                        mDateSetListener,
+//                        year, month, day);
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                dialog.show();
+//            }
+//        });
+//
+//        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
+//                int rm = month + 1;
+//                mDatePicker.setText(year + "/" + rm + "/" + dayOfMonth);
+//                classdate=year + "/" + rm + "/" + dayOfMonth;
+//                Toast.makeText(modifycourse_page.this, classdate, Toast.LENGTH_SHORT).show();
+//            }
+//        };
+   }
 
         class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 classdifficult=difficultyArray[i];
-                Toast.makeText(modifycourse_page.this, classdifficult, Toast.LENGTH_SHORT).show();
+                classdate=dateArray[i];
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {

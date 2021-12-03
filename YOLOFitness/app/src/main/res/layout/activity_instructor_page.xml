@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background3"
     tools:context=".instructor_page">
 
 
     <Button
-        android:id="@+id/bt_unenroll"
+        android:id="@+id/bt_myclass"
         android:layout_width="140dp"
         android:layout_height="53dp"
         android:layout_marginTop="36dp"
@@ -24,7 +24,7 @@
         android:layout_width="142dp"
         android:layout_height="54dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="44dp"
         android:text="       Menu       "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ET_Search" />
@@ -46,17 +46,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/ltmember"
+        android:id="@+id/LT_instructor"
         android:layout_width="303dp"
         android:layout_height="439dp"
         android:layout_marginTop="34dp"
-        android:background="@color/white"
+        android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.508" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_myclass"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView3"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="Click the course in list below to modify it"
         android:textColor="#161517"
-        app:layout_constraintBottom_toTopOf="@+id/ltmember"
+        app:layout_constraintBottom_toTopOf="@+id/LT_instructor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ET_Search"

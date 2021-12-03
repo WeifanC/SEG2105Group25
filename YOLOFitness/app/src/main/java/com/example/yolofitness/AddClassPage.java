@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddClassPage extends AppCompatActivity {
@@ -54,11 +55,15 @@ public class AddClassPage extends AppCompatActivity {
                 ClassModel classModel;
                 try {
                     String currentdate = LocalDate.now().toString();
-                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"null","Easy",currentdate,"1","0");
+                    String[] studentname = new String[1];
+                    studentname[0] = "";
+                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"null","Easy",currentdate,"null","1","0",studentname);
                     Toast.makeText(AddClassPage.this, classModel.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(AddClassPage.this, "Error create class", Toast.LENGTH_SHORT).show();
-                    classModel = new ClassModel(-1,"error","no detail","error","error","null","null","null");
+                    String[] studentname = new String[1];
+                    studentname[0] = "";
+                    classModel = new ClassModel(-1,"error","no detail","error","error","null","null","null","null",studentname);
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(AddClassPage.this);

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".AddClassPage">
 
     <EditText
@@ -24,14 +25,14 @@
 
     <EditText
         android:id="@+id/tx_description"
-        android:layout_width="338dp"
+        android:layout_width="332dp"
         android:layout_height="94dp"
         android:layout_marginTop="32dp"
         android:hint="@string/ClassDescription"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_classname"
         tools:ignore="TextContrastCheck" />
@@ -43,7 +44,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/viewall"
         app:layout_constraintEnd_toStartOf="@+id/bt_add"
-        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_description" />
 
@@ -51,7 +52,7 @@
         android:id="@+id/bt_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="36dp"
         android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bt_viewall" />
@@ -70,6 +71,7 @@
         android:layout_height="wrap_content"
         android:text="Modify_Acc"
         app:layout_constraintEnd_toStartOf="@+id/bt_add"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toEndOf="@+id/bt_viewall"
         app:layout_constraintTop_toBottomOf="@+id/tx_description" />
 

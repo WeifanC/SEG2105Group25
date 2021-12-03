@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -24,9 +25,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CLASS_DESCRIPT = "CLASS_DESCRIPT";
     public static final String COLUMN_INSTRUCTOR = "INSTRUCTOR";
     public static final String COLUMN_DIFFICULT = "DIFFICULT";
+    public static final String COLUMN_DATE = "DATE";
     public static final String COLUMN_TIME = "TIME";
     public static final String COLUMN_HOUR = "HOUR";
     public static final String COLUMN_CAP = "CAP";
+    public static final String COLUMN_MEMBERS = "MEMBERS";
     public static final String COLUMN_ID2 = "ID2";
     public static final String COLUMN_USER = "USER";
     public static final String COLUMN_PASS = "PASS";
@@ -44,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqldb) {
-        String classtable = "CREATE TABLE " + CLASS_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLASS_NAME + " TEXT, " + COLUMN_CLASS_DESCRIPT + " TEXT, " + COLUMN_INSTRUCTOR + " TEXT, " + COLUMN_DIFFICULT + " TEXT, "+ COLUMN_TIME + " TEXT, " + COLUMN_HOUR + " TEXT, " + COLUMN_CAP + " TEXT)";
+        String classtable = "CREATE TABLE " + CLASS_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLASS_NAME + " TEXT, " + COLUMN_CLASS_DESCRIPT + " TEXT, " + COLUMN_INSTRUCTOR + " TEXT, " + COLUMN_DIFFICULT + " TEXT, "+ COLUMN_DATE + " TEXT, " +  COLUMN_TIME + " TEXT, " + COLUMN_HOUR + " TEXT, " + COLUMN_CAP + " TEXT, " + COLUMN_MEMBERS + " TEXT)";
         String usertable = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_ID2 +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER + " TEXT, " + COLUMN_PASS + " TEXT, " + COLUMN_IDENTITY +" TEXT)";
         sqldb.execSQL(usertable);
         sqldb.execSQL(classtable);
@@ -67,9 +70,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cvalue.put(COLUMN_CLASS_DESCRIPT, classModel.getDescription());
         cvalue.put(COLUMN_INSTRUCTOR,classModel.getInstructor());
         cvalue.put(COLUMN_DIFFICULT,classModel.getDifficulty());
-        cvalue.put(COLUMN_TIME,classModel.getDate());
+        cvalue.put(COLUMN_DATE,classModel.getDate());
+        cvalue.put(COLUMN_TIME,classModel.getTime());
         cvalue.put(COLUMN_HOUR,classModel.getHours());
         cvalue.put(COLUMN_CAP,classModel.getCapacity());
+        cvalue.put(COLUMN_MEMBERS, Arrays.toString(classModel.getStudentname()));
 
         long insert = sqldb.insert(CLASS_TABLE, null, cvalue);
         return insert != -1;
@@ -99,13 +104,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int classID = cursor.getInt(0);
                 String className = cursor.getString(1);
                 String classDes = cursor.getString(2);
-                String classinstructor = cursor.getString(3);
                 String classdifficulty=cursor.getString(4);
+                String classinstructor = cursor.getString(3);
                 String classdate=cursor.getString(5);
-                String classhours=cursor.getString(6);
-                String classcap=cursor.getString(7);
-                ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classhours,classcap);
-                allList.add(newclass);
+                String classtime=cursor.getString(6);
+                String classhours=cursor.getString(7);
+                String classcap=cursor.getString(8);
+                String classmember=cursor.getString(9);
+
+                if (classmember.contains(",")){
+                    String[] membersname = classmember.split(",",0);
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    allList.add(newclass);
+                }else{
+                    String[] membersname = new String[1];
+                    membersname[0] = classmember;
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    allList.add(newclass);
+                }
 
             } while (cursor.moveToNext());
         } else {
@@ -129,11 +145,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String classdifficulty=oc.getString(4);
                 String classinstructor = oc.getString(3);
                 String classdate=oc.getString(5);
-                String classhours=oc.getString(6);
-                String classcap=oc.getString(7);
-                ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classhours,classcap);
-                ownclass.add(newclass);
-
+                String classtime=oc.getString(6);
+                String classhours=oc.getString(7);
+                String classcap=oc.getString(8);
+                String classmember=oc.getString(9);
+                if (classmember.contains(",")){
+                    String[] membersname = classmember.split(", ",0);
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    ownclass.add(newclass);
+                }else{
+                    String[] membersname = new String[1];
+                    membersname[0] = classmember;
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    ownclass.add(newclass);
+                }
             } while (oc.moveToNext());
         } else {
 
@@ -147,7 +172,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<ClassModel> search(String classname){
         List<ClassModel> ownclass = new ArrayList<>();
         SQLiteDatabase sqldb = this.getWritableDatabase();
-        Cursor oc = sqldb.rawQuery("SELECT * FROM CLASS_TABLE where CLASS_NAME = ?", new String[]{classname});
+        Cursor oc = sqldb.rawQuery("SELECT * FROM CLASS_TABLE where CLASS_NAME = ? or INSTRUCTOR = ? ", new String[]{classname});
         if (oc.moveToFirst()) {
             do {
                 int classID = oc.getInt(0);
@@ -156,10 +181,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String classdifficulty=oc.getString(4);
                 String classinstructor = oc.getString(3);
                 String classdate=oc.getString(5);
-                String classhours=oc.getString(6);
-                String classcap=oc.getString(7);
-                ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classhours,classcap);
-                ownclass.add(newclass);
+                String classtime=oc.getString(6);
+                String classhours=oc.getString(7);
+                String classcap=oc.getString(8);
+                String classmember=oc.getString(9);
+                if (classmember.contains(",")){
+                    String[] membersname = classmember.split(", ",0);
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    ownclass.add(newclass);
+                }else{
+                    String[] membersname = new String[1];
+                    membersname[0] = classmember;
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    ownclass.add(newclass);
+                }
 
             } while (oc.moveToNext());
         } else {
@@ -212,11 +247,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    public void UpdateClass(int id, String instructor,String difficult,String date,String hours,String capacity){
+    public void UpdateClass(int id, String instructor,String difficult,String date,String time,String hours,String capacity){
         SQLiteDatabase sqldb = this.getWritableDatabase();
         String query = "UPDATE " + CLASS_TABLE + " SET " + COLUMN_INSTRUCTOR +
             " = '" + instructor + "' , " + COLUMN_DIFFICULT + " = '" + difficult + "' , " +
-                COLUMN_TIME + " = '" + date + "' , " + COLUMN_HOUR + " = '" + hours + "' , " + COLUMN_CAP+ " = '" + capacity + "' WHERE " +  COLUMN_ID + "= '" + id +"'";
+                COLUMN_DATE + " = '" + date + "' , " +COLUMN_TIME + " = '" + time + "' , " + COLUMN_HOUR + " = '" + hours + "' , " + COLUMN_CAP+ " = '" + capacity + "' WHERE " +  COLUMN_ID + "= '" + id +"'";
+        sqldb.execSQL(query);
+    }
+    public void UpdateMemberList(int id, String[] member){
+        SQLiteDatabase sqldb = this.getWritableDatabase();
+        String query = "UPDATE " + CLASS_TABLE + " SET " + COLUMN_MEMBERS+ " = '" + Arrays.toString(member) + "' WHERE " +  COLUMN_ID + "= '" + id +"'";
         sqldb.execSQL(query);
     }
 

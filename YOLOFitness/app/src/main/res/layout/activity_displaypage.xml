@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="239dp"
-        android:layout_height="297dp"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
         android:text="Welcome, User You are now successfully sign in as student/instructor"
         android:textColor="@color/black"
         android:textColorHint="@color/black"

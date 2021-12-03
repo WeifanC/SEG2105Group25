@@ -10,12 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YOLOFitness">
         <activity
-            android:name=".member_enrollpage"
-            android:exported="false" />
-        <activity
-            android:name=".Memberpage"
-            android:exported="false" />
-        <activity
             android:name=".instructor_page"
             android:exported="false" />
         <activity
@@ -29,6 +23,12 @@
             android:exported="false" />
         <activity
             android:name=".modifycourse_page"
+            android:exported="false" />
+        <activity
+            android:name=".memberpage"
+            android:exported="false" />
+        <activity
+            android:name=".EnrolPage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
