@@ -25,6 +25,9 @@
             android:name=".modifycourse_page"
             android:exported="false" />
         <activity
+            android:name=".memberpage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
