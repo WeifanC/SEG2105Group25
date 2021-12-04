@@ -133,11 +133,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 if (classmember.contains(",")){
                     String[] membersname = classmember.split(",",0);
+                    for (int i =0; i<membersname.length;i++){membersname[i] = membersname[i].replaceAll("[^a-zA-Z0-9]", "" );}
                     ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
                     allList.add(newclass);
                 }else{
                     String[] membersname = new String[1];
-                    membersname[0] = classmember;
+                    membersname[0] = classmember.replaceAll("[^a-zA-Z0-9]", "" );
                     ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
                     allList.add(newclass);
                 }
@@ -170,11 +171,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String classmember=oc.getString(9);
                 if (classmember.contains(",")){
                     String[] membersname = classmember.split(", ",0);
+                    for (int i =0; i<membersname.length;i++){membersname[i] = membersname[i].replaceAll("[^a-zA-Z0-9]", "" );}
                     ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
                     ownclass.add(newclass);
                 }else{
                     String[] membersname = new String[1];
-                    membersname[0] = classmember;
+                    membersname[0] = classmember.replaceAll("[^a-zA-Z0-9]", "" );
                     ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
                     ownclass.add(newclass);
                 }
@@ -191,7 +193,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<ClassModel> search(String classname){
         List<ClassModel> ownclass = new ArrayList<>();
         SQLiteDatabase sqldb = this.getWritableDatabase();
-        Cursor oc = sqldb.rawQuery("SELECT * FROM CLASS_TABLE where CLASS_NAME = ? or INSTRUCTOR = ? ", new String[]{classname});
+        Cursor oc = sqldb.rawQuery("SELECT * FROM CLASS_TABLE where CLASS_NAME = ? ", new String[]{classname});
         if (oc.moveToFirst()) {
             do {
                 int classID = oc.getInt(0);
@@ -206,11 +208,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String classmember=oc.getString(9);
                 if (classmember.contains(",")){
                     String[] membersname = classmember.split(", ",0);
+                    for (int i =0; i<membersname.length;i++){membersname[i] = membersname[i].replaceAll("[^a-zA-Z0-9]", "" );}
                     ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
                     ownclass.add(newclass);
                 }else{
                     String[] membersname = new String[1];
-                    membersname[0] = classmember;
+                    membersname[0] = classmember.replaceAll("[^a-zA-Z0-9]", "" );
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    ownclass.add(newclass);
+                }
+
+            } while (oc.moveToNext());
+        } else {
+
+        }
+
+        oc.close();
+        sqldb.close();
+        return ownclass;
+    }
+    public List<ClassModel> searchdate(String date){
+        List<ClassModel> ownclass = new ArrayList<>();
+        SQLiteDatabase sqldb = this.getWritableDatabase();
+        Cursor oc = sqldb.rawQuery("SELECT * FROM CLASS_TABLE where DATE = ? ", new String[]{date});
+        if (oc.moveToFirst()) {
+            do {
+                int classID = oc.getInt(0);
+                String className = oc.getString(1);
+                String classDes = oc.getString(2);
+                String classdifficulty=oc.getString(4);
+                String classinstructor = oc.getString(3);
+                String classdate=oc.getString(5);
+                String classtime=oc.getString(6);
+                String classhours=oc.getString(7);
+                String classcap=oc.getString(8);
+                String classmember=oc.getString(9);
+                if (classmember.contains(",")){
+                    String[] membersname = classmember.split(", ",0);
+                    for (int i =0; i<membersname.length;i++){membersname[i] = membersname[i].replaceAll("[^a-zA-Z0-9]", "" );}
+                    ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                    ownclass.add(newclass);
+                }else{
+                    String[] membersname = new String[1];
+                    membersname[0] = classmember.replaceAll("[^a-zA-Z0-9]", "" );
                     ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
                     ownclass.add(newclass);
                 }
@@ -312,6 +352,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         String query = "UPDATE " + CLASS_TABLE + " SET " + COLUMN_MEMBERS+ " = '" + Arrays.toString(member) + "' WHERE " +  COLUMN_ID + "= '" + id +"'";
         sqldb.execSQL(query);
+    }
+    public List<ClassModel> enroledClass(String username){
+        List<ClassModel> enroledclass = new ArrayList<>();
+        String queryString = "SELECT * FROM " + CLASS_TABLE;
+        SQLiteDatabase sqldb = this.getWritableDatabase();
+        Cursor oc = sqldb.rawQuery(queryString, null);
+        if (oc.moveToFirst()) {
+            do {
+                int classID = oc.getInt(0);
+                String className = oc.getString(1);
+                String classDes = oc.getString(2);
+                String classdifficulty=oc.getString(4);
+                String classinstructor = oc.getString(3);
+                String classdate=oc.getString(5);
+                String classtime=oc.getString(6);
+                String classhours=oc.getString(7);
+                String classcap=oc.getString(8);
+                String classmember=oc.getString(9);
+                if (classmember.contains(",")){
+                    if (classmember.contains(username)){
+                        String[] membersname = classmember.split(", ",0);
+                        for (int i =0; i<membersname.length;i++){membersname[i] = membersname[i].replaceAll("[^a-zA-Z0-9]", "" );}
+                        ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                        enroledclass.add(newclass);
+                    }
+                }else{
+                    if (classmember.contains(username)){
+                        String[] membersname = new String[1];
+                        membersname[0] = classmember.replaceAll("[^a-zA-Z0-9]", "" );
+                        ClassModel newclass = new ClassModel(classID, className, classDes,classinstructor,classdifficulty,classdate,classtime,classhours,classcap,membersname);
+                        enroledclass.add(newclass);
+                    }
+                }
+            } while (oc.moveToNext());
+        } else {
+
+        }
+
+        oc.close();
+        sqldb.close();
+        return enroledclass;
     }
 
 

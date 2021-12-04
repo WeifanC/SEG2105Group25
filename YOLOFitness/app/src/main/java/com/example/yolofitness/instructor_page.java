@@ -130,6 +130,7 @@ public class instructor_page extends AppCompatActivity {
                     finalBundle.putString("time",clickedClass.getTime());
                     finalBundle.putString("hours",clickedClass.getHours());
                     finalBundle.putString("capacity",clickedClass.getCapacity());
+                    finalBundle.putStringArray("members",clickedClass.getStudentname());
                     Intent intent = new Intent(instructor_page.this, modifycourse_page.class);
                     intent.putExtras(finalBundle);
                     startActivity(intent);

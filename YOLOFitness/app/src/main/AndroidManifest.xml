@@ -28,6 +28,9 @@
             android:name=".memberpage"
             android:exported="false" />
         <activity
+            android:name=".checkmember"
+            android:exported="false" />
+        <activity
             android:name=".EnrolPage"
             android:exported="false" />
         <activity

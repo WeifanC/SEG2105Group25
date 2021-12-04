@@ -11,10 +11,9 @@
         android:id="@+id/lt_view_class"
         android:layout_width="370dp"
         android:layout_height="433dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/member_viewclass" />
 
@@ -22,13 +21,13 @@
         android:id="@+id/member_searchbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
         android:text="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toEndOf="@+id/member_searchbox"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/member_searchbox"
@@ -45,10 +44,10 @@
 
     <Button
         android:id="@+id/member_viewclass"
-        android:layout_width="161dp"
-        android:layout_height="48dp"
+        android:layout_width="188dp"
+        android:layout_height="66dp"
         android:layout_marginTop="16dp"
-        android:text="All class"
+        android:text="VIEW ENROLLED CLASS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/member_searchbox" />

@@ -1,6 +1,7 @@
 package com.example.yolofitness;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * class nodel setting up all variable
@@ -42,7 +43,7 @@ public class ClassModel {
                 ", date = " + date +
                 ", time = " + time +
                 ", hours = " + hours +
-                ", capacity = " + capacity;
+                ", capacity = " + capacity + Arrays.toString(studentname);
     }
 
     /**

@@ -16,14 +16,18 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
 import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
 
 public class modifycourse_page extends AppCompatActivity {
-    public Button Confirm,Cancel;
+    private Button Confirm,Cancel,check;
     DatabaseHelper databaseHelper;
     private static final String TAG = "TestDatePickerActivity";
     private TextView texttime,textcap;
@@ -54,6 +58,7 @@ public class modifycourse_page extends AppCompatActivity {
         classtime = bundle.getString("time");
         int hours = Integer.parseInt(bundle.getString("hours"));
         capacity = bundle.getString("capacity");
+        String[] members = bundle.getStringArray("members");
 
         setContentView(R.layout.activity_modifycourse_page);
 //        mDatePicker = (TextView) findViewById(R.id.modify_date);
@@ -67,6 +72,7 @@ public class modifycourse_page extends AppCompatActivity {
         et_cap.setText(capacity);
         Confirm = (Button) findViewById(R.id.modify_confirm);
         Cancel = (Button) findViewById(R.id.modify_cancel);
+        check = findViewById(R.id.bt_checkmember);
         databaseHelper = new DatabaseHelper(this);
 
         Hours = (NumberPicker) findViewById(R.id.modify_hours);
@@ -83,7 +89,7 @@ public class modifycourse_page extends AppCompatActivity {
                 spinnerdiff.setSelection(0);
             }
         }
-        spinnerdiff.setOnItemSelectedListener(new MyOnItemSelectedListener());
+        spinnerdiff.setOnItemSelectedListener(new MydiffOnItemSelectedListener());
 
         Spinner spinnerdate = findViewById(R.id.spinner_date);
         ArrayAdapter<String> date = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, dateArray);
@@ -95,7 +101,15 @@ public class modifycourse_page extends AppCompatActivity {
                 spinnerdate.setSelection(0);
             }
         }
-        spinnerdate.setOnItemSelectedListener(new MyOnItemSelectedListener());
+        spinnerdate.setOnItemSelectedListener(new MydateOnItemSelectedListener());
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(modifycourse_page.this, checkmember.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
 
         /**
@@ -108,17 +122,28 @@ public class modifycourse_page extends AppCompatActivity {
                 capacity = et_cap.getText().toString();
                 classtime = et_time.getText().toString();
 
-                if (classtime.contains("[123456789]"))
-                if (classhours == null){
-                    classhours = hours+"";
+                Date time = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+                try {
+                    time = sdf.parse(classtime);
+                } catch (ParseException e) {
+                    Toast.makeText(modifycourse_page.this, "Class time incorrect formula", Toast.LENGTH_SHORT).show();
                 }
-                databaseHelper.UpdateClass(classid,instructor,classdifficult,classdate,classtime,classhours,capacity);
-                Bundle finalBundle = new Bundle();;
-                finalBundle.putString("user",instructor);
-                Intent intent = new Intent(modifycourse_page.this, instructor_page.class);
-                intent.putExtras(finalBundle);
-                startActivity(intent);
-            }
+                if (time != null){
+                    if (classhours == null){
+                        classhours = hours+"";
+                    }
+                    databaseHelper.UpdateClass(classid,instructor,classdifficult,classdate,classtime,classhours,capacity);
+                    Bundle finalBundle = new Bundle();;
+                    finalBundle.putString("user",instructor);
+                    Intent intent = new Intent(modifycourse_page.this, instructor_page.class);
+                    intent.putExtras(finalBundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(modifycourse_page.this,"Incorrect formula",Toast.LENGTH_SHORT).show();
+                }
+                }
+
         });
             /**
              * cancel class
@@ -147,16 +172,26 @@ public class modifycourse_page extends AppCompatActivity {
         });
    }
 
-        class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
+        class MydiffOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 classdifficult=difficultyArray[i];
-                classdate=dateArray[i];
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         }
+        class MydateOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            classdate=dateArray[i];
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+        }
+    }
     }
 
 

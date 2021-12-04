@@ -63,10 +63,9 @@ public class AddClassPage extends AppCompatActivity {
             public void onClick(View v) {
                 ClassModel classModel;
                 try {
-                    String currentdate = LocalDate.now().toString();
                     String[] studentname = new String[1];
                     studentname[0] = "";
-                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"null","Easy",currentdate,"null","1","0",studentname);
+                    classModel = new ClassModel(-1, tx_classname.getText().toString(), tx_description.getText().toString(),"null","Easy","Monday","null","1","0",studentname);
                     Toast.makeText(AddClassPage.this, classModel.toString(), Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
                     Toast.makeText(AddClassPage.this, "Error create class", Toast.LENGTH_SHORT).show();
