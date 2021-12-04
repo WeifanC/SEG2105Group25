@@ -20,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     boolean switchState;
     DatabaseHelper database;
 
+    /**
+     * main page for user to log in & create account
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+/**
+ * user select different identity
+ */
         logInbotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,14 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    //  Testing admin.
-    /*public void Admin(String User, String UserPassword) {
-        if ((User.equals("admin")) && (UserPassword.equals("admin123"))) {
-            Intent intent = new Intent(MainActivity.this, AddClassPage.class);
-            startActivity(intent);
-        }
 
-    }*/
 }
 
 

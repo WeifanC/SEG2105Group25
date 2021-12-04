@@ -25,6 +25,10 @@ public class AddClassPage extends AppCompatActivity {
     public ListView list_class;
     public DatabaseHelper database;
 
+    /**
+     * deleting all account message
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,11 @@ public class AddClassPage extends AppCompatActivity {
 
            }
          });
+
+        /**
+         * validating account message
+         * @return null
+         */
         bt_add.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -84,6 +93,11 @@ public class AddClassPage extends AppCompatActivity {
 
             }
         });
+
+        /**
+         * admin able to delete class onclick
+         *
+         */
         list_class.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

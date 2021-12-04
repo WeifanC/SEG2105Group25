@@ -17,9 +17,11 @@ public class Displaypage extends AppCompatActivity {
     Timer timer;
 
 
-
-
-
+    /**
+     * display message when user log in
+     * @param savedInstanceState
+     * @return null
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +46,7 @@ public class Displaypage extends AppCompatActivity {
                     intent.putExtras(finalBundle);
                     startActivity(intent);
                 }
-//                bt_instructor = findViewById(R.id.bt_instructor);
-//                bt_member = findViewById(R.id.bt_membercourse);
-//                bt_instructor.setOnClickListener(v -> {
-//                    Intent intent = new Intent(Displaypage.this,instructor_page.class);
-//                });
+
             }
         },3000);
 

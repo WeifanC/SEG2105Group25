@@ -24,7 +24,11 @@ public class instructor_page extends AppCompatActivity {
     public String classname;
     DatabaseHelper database;
 
-
+    /**
+     * Instructor display page view all classes
+     * @param savedInstanceState
+     * @return null
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,16 @@ public class instructor_page extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         });
+
         bt_myclass.setOnClickListener(new View.OnClickListener() {
             @Override
+
+            /**
+             * user clicks button, change button name and its function.
+             * @param view
+             * @return null
+             *
+             */
             public void onClick(View v) {
                 String allorowned = bt_myclass.getText().toString();
                 if (allorowned.equals("AVAILABLE COURSES")){
@@ -79,6 +91,11 @@ public class instructor_page extends AppCompatActivity {
             });
         bt_search.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * search button instructor info match database &display conflict message
+             * @param view
+             * @return null
+             */
             public void onClick(View view) {
                 String classn = ET_search.getText().toString();
                 if (classn != null){
@@ -96,6 +113,11 @@ public class instructor_page extends AppCompatActivity {
 
         lt_instructor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+            /**
+             * Listview class info&instructor, display conflict message
+             * @param view,i,l
+             * @return null
+             */
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ClassModel clickedClass = (ClassModel) adapterView.getItemAtPosition(i);
                 String Cinstructor = clickedClass.getInstructor();
@@ -118,6 +140,13 @@ public class instructor_page extends AppCompatActivity {
 
         });
         }
+
+    /**
+     * displayclass
+     * @param databaseHelper
+     * @return null
+     *
+     */
     private void displayClassList(DatabaseHelper databaseHelper) {
         List<ClassModel> allclass = databaseHelper.getAll();
         ArrayAdapter classarrayadapter = new ArrayAdapter<ClassModel>(instructor_page.this, android.R.layout.simple_list_item_1, allclass);

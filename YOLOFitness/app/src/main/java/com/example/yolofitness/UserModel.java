@@ -23,34 +23,67 @@ public class UserModel {
                 '}';
     }
 
+    /**
+     * get userid
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * set user id
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * get username
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * set username
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
+
+    /**
+     * get user password when sign up
+     * @return
+     */
 
     public String getPassword() {
         return password;
     }
 
+    /**
+     * set user password
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * ger user identity (member or insructor
+     * @return
+     */
     public String getIdentity() {
         return identity;
     }
 
+    /**
+     * set indentify
+     * @param identity
+     */
     public void setIdentity(String identity) {
         this.identity = identity;
     }

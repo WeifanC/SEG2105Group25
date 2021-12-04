@@ -62,7 +62,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-
+    /**
+     * adding data into database
+     * @param classModel
+     * @return boolean
+     */
     public boolean addOne(ClassModel classModel) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         ContentValues cvalue = new ContentValues();
@@ -81,6 +85,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Deleting data from database
+     * @param classModel
+     * @return boolean
+     */
     public boolean deleteone(ClassModel classModel) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         String queryString = "DELETE FROM " + CLASS_TABLE + " WHERE " + COLUMN_ID + " = " + classModel.getId();
@@ -88,12 +97,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.moveToFirst();
 
     }
+
+    /**
+     * Instructor class Cancel function
+     * @param id
+     * @return null
+     */
     public void cancelclass(int id) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         String queryString = "DELETE FROM " + CLASS_TABLE + " WHERE " + COLUMN_ID + " = " + id;
         sqldb.execSQL(queryString);
     }
 
+    /**
+     * list view getting data to database&
+     * @return list
+     */
     public List<ClassModel> getAll() {
         List<ClassModel> allList = new ArrayList<>();
         String queryString = "SELECT * FROM " + CLASS_TABLE;
@@ -206,6 +225,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ownclass;
     }
 
+    /**
+     * adding data to column user&storing to database
+     * @param userModel
+     * @return boolean
+     */
     public boolean addUser(UserModel userModel) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         ContentValues value = new ContentValues();
@@ -217,6 +241,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * verify account when log in
+     * @param username
+     * @return boolean
+     */
     public boolean Verify_Account(String username) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         Cursor member_Account = sqldb.rawQuery("SELECT * FROM USER_TABLE where USER = ?", new String[]{username});
@@ -227,7 +256,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
+    /**
+     * verify password when log in
+     * @param username
+     * @param password
+     * @param identity
+     * @return boolean
+     */
     public boolean Verify_password(String username, String password, String identity){
         SQLiteDatabase sqldb = this.getWritableDatabase();
         Cursor Accountinfo = sqldb.rawQuery("SELECT* FROM USER_TABLE where USER = ? and PASS = ? and IDENTITY = ?", new String[]{username, password, identity});
@@ -238,6 +273,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
     }
+
+    /**
+     * verify classname
+     * @param classname
+     * @param instructor
+     * @return boolean
+     */
     public boolean Verify_Classname(String classname, String instructor) {
         SQLiteDatabase sqldb = this.getWritableDatabase();
         Cursor classn = sqldb.rawQuery("SELECT * FROM CLASS_TABLE where CLASS_NAME = ? and INSTRUCTOR = ?", new String[]{classname,instructor});
@@ -247,6 +289,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    /**
+     * updating class when insturctor modifying class
+     * @param id
+     * @param instructor
+     * @param difficult
+     * @param date
+     * @param time
+     * @param hours
+     * @param capacity
+     * @return null
+     */
     public void UpdateClass(int id, String instructor,String difficult,String date,String time,String hours,String capacity){
         SQLiteDatabase sqldb = this.getWritableDatabase();
         String query = "UPDATE " + CLASS_TABLE + " SET " + COLUMN_INSTRUCTOR +
@@ -260,36 +314,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqldb.execSQL(query);
     }
 
-//    public Cursor getWordMatches(String query, String[] columns) {
-//        String selection = COLUMN_CLASS_NAME + " MATCH ?";
-//        String[] selectionArgs = new String[] {query+"*"};
-//
-//        return query(selection, selectionArgs, columns);
-//    }
-//
-//    private Cursor query(String selection, String[] selectionArgs, String[] columns) {
-//        SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
-//        builder.setTables(CLASS_TABLE);
-//
-//        Cursor cursor = builder.query(getReadableDatabase(),
-//                columns, selection, selectionArgs, null, null, null);
-//
-//        if (cursor == null) {
-//            return null;
-//        } else if (!cursor.moveToFirst()) {
-//            cursor.close();
-//            return null;
-//        }
-//        return cursor;
-//    }
 
-//    public boolean Verify_identify(String member_identity ){
-//        SQLiteDatabase sqldb = this.getWritableDatabase();
-//        Cursor identify = sqldb.rawQuery("SELECT * FROM USER_TABLE where IDENTITY = ?", new String[]{member_identity});
-//        if (identify.getCount()>0){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
 }

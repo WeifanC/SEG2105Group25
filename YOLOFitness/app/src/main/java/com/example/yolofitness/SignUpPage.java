@@ -24,7 +24,10 @@ public class SignUpPage extends AppCompatActivity {
     DatabaseHelper database;
 
 
-
+    /**
+     * sign up page create account&display relative message
+     * @param savedInstanceState
+     */
 
     @Override// Signup page on click and get input.
     protected void onCreate(Bundle savedInstanceState) {

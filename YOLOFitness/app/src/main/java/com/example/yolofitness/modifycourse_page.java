@@ -39,6 +39,10 @@ public class modifycourse_page extends AppCompatActivity {
     private String classhours;
     private String capacity;
 
+    /**
+     * onmethod method for instructor to modify page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +98,10 @@ public class modifycourse_page extends AppCompatActivity {
         spinnerdate.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
 
+        /**
+         * update data to database
+         * @return null
+         */
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +120,9 @@ public class modifycourse_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+            /**
+             * cancel class
+             */
         Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,7 +135,9 @@ public class modifycourse_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        /**
+         * display message
+         */
         Hours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -133,34 +145,6 @@ public class modifycourse_page extends AppCompatActivity {
                 Toast.makeText(modifycourse_page.this, "This class is " + classhours + " hour long.", Toast.LENGTH_SHORT).show();
             }
         });
-//        mDatePicker.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar cal = Calendar.getInstance();
-//                int year = cal.get(Calendar.YEAR);
-//                int month = cal.get(Calendar.MONTH);
-//                int day = cal.get(Calendar.DAY_OF_MONTH);
-//
-//                DatePickerDialog dialog = new DatePickerDialog(
-//                        modifycourse_page.this,
-//                        android.R.style.Theme_Holo_Dialog_MinWidth,
-//                        mDateSetListener,
-//                        year, month, day);
-//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                dialog.show();
-//            }
-//        });
-//
-//        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
-//                int rm = month + 1;
-//                mDatePicker.setText(year + "/" + rm + "/" + dayOfMonth);
-//                classdate=year + "/" + rm + "/" + dayOfMonth;
-//                Toast.makeText(modifycourse_page.this, classdate, Toast.LENGTH_SHORT).show();
-//            }
-//        };
    }
 
         class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener{
