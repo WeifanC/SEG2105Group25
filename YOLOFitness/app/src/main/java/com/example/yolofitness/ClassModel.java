@@ -42,8 +42,7 @@ public class ClassModel {
                 ", difficulty = " + difficulty  +
                 ", date = " + date +
                 ", time = " + time +
-                ", hours = " + hours +
-                ", capacity = " + capacity + Arrays.toString(studentname);
+                ", hours = " + hours;
     }
 
     /**
